@@ -9,7 +9,7 @@ The goal is for the project to contain two types of capability: 1) Some tooling 
 
 Cluster Tooling
 =========
-The current idea is to create images with Packer.io and create the instances with libcloud.  
+The current idea is to create images with [Packer.io](http://www.packer.io/) and create the instances with [libcloud](http://libcloud.apache.org/).  
 
 To create the ssh keys:
 ```
