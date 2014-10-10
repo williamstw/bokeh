@@ -25,9 +25,9 @@ packer build -var 'do_client_id=your_digital_ocean_id_here' \
 ```
 
 To startup the image with libcloud:
-
+```
  python libcloudtest.py -k your_digital_ocean_key_here -i your_digital_ocean_clientid_here
-
+```
 
 Perf Test Tooling
 =========
