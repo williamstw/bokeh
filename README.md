@@ -14,7 +14,7 @@ The current idea is to create images with [Packer.io](http://www.packer.io/) and
 Create an image with ssh keys installed:
 ```
  cd src/main/shell/
- ./bokey.sh <digital_ocean_client_id> <digital_ocean_client_key>
+ ./bokeh.sh <digital_ocean_client_id> <digital_ocean_client_key>
  ```
  
 Note: The project is designed to create an ephemeral cluster to support testing, so it overwrites previous ssh 
