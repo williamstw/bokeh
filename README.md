@@ -16,7 +16,8 @@ Create an image with ssh keys installed:
  cd src/main/shell/
  ./bokeh.sh <digital_ocean_client_id> <digital_ocean_client_key>
  ```
- 
+You can find your API credentials by logging into digital ocean and going here [https://cloud.digitalocean.com/api_access].
+
 Note: The project is designed to create an ephemeral cluster to support testing, so it overwrites previous ssh 
       ssh keys in the ./target directory.  If you have previous images you want to continue to use, you'll need
       to manually mv that .ssh directory out of target.
