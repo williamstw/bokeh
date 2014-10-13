@@ -23,34 +23,49 @@ import libcloud.security
 import sys, getopt
 libcloud.security.CA_CERTS_PATH = ['ca-bundle.cer']
 
+
 def main(argv):
 	clientid = ''
 	clientkey = ''
+	packerimg = ''
 	try:
-		opts, args = getopt.getopt(argv,"hi:k:",["clientid=","clientkey="])
+		opts, args = getopt.getopt(argv,"hi:k:p:",["clientid=","clientkey=","packerimg="])
 	except getopt.GetoptError:
-		print 'blurcloud.py -k <clientkey> -i <clientid>'
+		print 'blurcloud.py -k <clientkey> -i <clientid> -p <packerimg>'
 		sys.exit(2)
 	for opt, arg in opts:
 		if opt == '-h':
-			print 'blurcloud.py -k <clientkey> -i <clientid>'
+			print 'blurcloud.py -k <clientkey> -i <clientid> -p <packerimg>'
 			sys.exit()
 		elif opt in ("-i", "--clientid"):
 			clientid = arg
 		elif opt in ("-k", "--clientkey"):
 			clientkey = arg
-
+		elif opt in ("-p", "--packerimg"):
+			packerimg = arg
+	
 	DIGITALOCEAN_USER = clientid
 	DIGITALOCEAN_KEY = clientkey
-	
+	PACK_IMG = packerimg
 	Driver = get_driver(Provider.DIGITAL_OCEAN)
 	conn = Driver(DIGITALOCEAN_USER, DIGITALOCEAN_KEY)
 
 	sizes = conn.list_sizes()
 	images = conn.list_images()
 	locations = conn.list_locations()
-	print_locations(conn)
-	
+	size = [s for s in sizes if s.name == '512MB'][0]
+ 
+	image = [i for i in images if i.name == PACK_IMG][0]
+	print('Using image[' + image.name + ']')
+	location = [l for l in locations if l.name == 'New York 2'][0]
+	node = conn.create_node(name='libcloud', size=size, image=image, location=location)
+	#print(node)
+	#print("Now sleeping...")
+	#time.sleep(120)
+	#print("Ok., now we'll kill it.")
+	#conn.destroy_node(node)
+
+
 def print_locations(conn):
 	print("Locations: ")
 	print(conn.list_locations())
@@ -61,10 +76,7 @@ def print_locations(conn):
 #print(conn.ex_list_ssh_keys())
 #size = [s for s in sizes if s.name == '512MB'][0]
 #print('Using size[' +size.name + ']')
-#image = [i for i in images if i.name == 'packer-1412642534'][0]
-#print('Using image[' + image.name + ']')
 #location = [l for l in locations if l.name == 'New York 2'][0]
-#node = conn.create_node(name='libcloud', size=size, image=image, location=location)
 #print(node)
 #print("Now sleeping...")
 #time.sleep(120)
