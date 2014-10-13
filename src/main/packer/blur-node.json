@@ -33,9 +33,9 @@
     "type": "shell",
     "inline_shebang": "/bin/bash",
     "inline": ["chmod 700 /srv/{{user `blur_version`}}-bin/.ssh",
-               "chmod 600 /srv/{{user `blur_version`}}-bin/.ssh/",
+               "chmod 600 /srv/{{user `blur_version`}}-bin/.ssh/id_rsa",
                "chmod 640 /srv/{{user `blur_version`}}-bin/.ssh/authorized_keys",
-               "useradd -s /bin/bash -d /srv/{{user `blur_version`}} blur",
+               "useradd -s /bin/bash -d /srv/{{user `blur_version`}}-bin blur",
                "chown -R blur:blur /srv/{{user `blur_version`}}-bin"]
    }
  ]
