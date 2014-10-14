@@ -27,7 +27,8 @@
    },
    {
     "type": "shell",
-    "inline": ["tar -xvf /srv/{{user `blur_version`}}-bin.tar.gz -C /srv"]
+    "inline": ["chmod +x /tmp/blur-config.sh",
+    		   "tar -xvf /srv/{{user `blur_version`}}-bin.tar.gz -C /srv"]
    }, 
    {
     "type":"file",
