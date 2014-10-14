@@ -16,6 +16,13 @@ Create an image with ssh keys installed:
  cd src/main/shell/
  ./bokeh.sh <digital_ocean_client_id> <digital_ocean_client_key>
  ```
+At the very end of the output you'll find the packerid to be used to start up the droplets below, e.g 'packer-1413245058' below:
+
+```
+==> Builds finished. The artifacts of successful builds are:
+--> digitalocean: A snapshot was created: 'packer-1413245058' in region 'New York 2'
+```
+
 You can find your API credentials by logging into digital ocean and going here [https://cloud.digitalocean.com/api_access].
 
 Note: The project is designed to create an ephemeral cluster to support testing, so it overwrites previous ssh 
@@ -25,7 +32,7 @@ Note: The project is designed to create an ephemeral cluster to support testing,
 To startup the image with libcloud:
 ```
  cd src/main/libcloud
- python libcloudtest.py -k your_digital_ocean_key_here -i your_digital_ocean_clientid_here
+ python libcloudtest.py -k your_digital_ocean_key_here -i your_digital_ocean_clientid_here -p <packer_image_name>
 ```
 
 For debugging, to ssh to your droplet:
