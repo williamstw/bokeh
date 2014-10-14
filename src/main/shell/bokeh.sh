@@ -1,20 +1,26 @@
 #!/bin/bash
 
 #### Arg validation
-ARGS=2
+ARGS=0
 COMMAND_NOT_FOUND=127
 
 function usage {
- echo "Usage: $(basename $0) <clientid> <clientkey>"
+ echo "Usage: $(basename $0)"
 }
 
 if [ "$#" != "$ARGS" ] ;then
   usage
   exit 1
 fi
+if [ ! -f ~/.bokeh ] ;then
+  echo "Error: No properties found at ~/.bokeh"
+  exit 1
+fi 
 
-clientkey=$1
-clientid=$2
+source ~/.bokeh
+
+clientkey=$DO_CLIENT_KEY
+clientid=$DO_CLIENT_ID
 
 #### Function defs
 function validate_keys {
