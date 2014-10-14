@@ -21,6 +21,11 @@
     "destination":"/srv/{{user `blur_version`}}-bin.tar.gz"
    },
    {
+    "type":"file",
+    "source":"../shell/blur-config.sh",
+    "destination":"/tmp/blur-config.sh"
+   },
+   {
     "type": "shell",
     "inline": ["tar -xvf /srv/{{user `blur_version`}}-bin.tar.gz -C /srv"]
    }, 
@@ -37,6 +42,15 @@
                "chmod 640 /srv/{{user `blur_version`}}-bin/.ssh/authorized_keys",
                "useradd -s /bin/bash -d /srv/{{user `blur_version`}}-bin blur",
                "chown -R blur:blur /srv/{{user `blur_version`}}-bin"]
+   }, 
+   {
+    "type": "shell",
+    "inline": ["apt-get -y update",
+    		   "apt-get -y install default-jdk"]
+   }, 
+   {
+   	"type": "shell",
+   	"inline": "/tmp/blur-config.sh {{user `blur_version`}}-bin"
    }
  ]
 }
