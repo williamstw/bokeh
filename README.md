@@ -11,10 +11,15 @@ Cluster Tooling
 =========
 The current idea is to create images with [Packer.io](http://www.packer.io/) and create the instances with [libcloud](http://libcloud.apache.org/).  
 
+Create a text file ~/.bokeh containing your Digital Ocean credentials:
+```
+DO_CLIENT_ID=<your client id>
+DO_CLIENT_KEY=<your client key>
+```
 Create an image with ssh keys installed:
 ```
  cd src/main/shell/
- ./bokeh.sh <digital_ocean_client_id> <digital_ocean_client_key>
+ ./bokeh.sh
  ```
 At the very end of the output you'll find the packerid to be used to start up the droplets below, e.g 'packer-1413245058' below:
 
